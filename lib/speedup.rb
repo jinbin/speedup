@@ -4,6 +4,7 @@ require 'yaml'
 require 'json'
 
 module Speedup
+    class << self
 	def initialize
 		config = YAML.load_file("./speedup.yaml")
 		if config[:code].nil?
@@ -31,5 +32,6 @@ module Speedup
 		conn = Faraday.new(:url => 'https://api.weibo.com')
 		conn.post '/2/statuses/update.json',:access_token => token,:status => text
 	end
+    end
 end
 
