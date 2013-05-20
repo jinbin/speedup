@@ -4,4 +4,4 @@ class A
 	include Speedup
 end
 
-puts A.new.get_info_from_yaml :access_token
+A.new.weibo("懒是一个很好的托辞，说得好像勤快了就真能干出什么大事儿一样。")
