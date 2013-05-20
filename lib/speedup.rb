@@ -1,4 +1,4 @@
-#require "speedup/version"
+require "speedup/version"
 require 'faraday'
 require 'yaml'
 require 'json'
