@@ -5,13 +5,29 @@ require 'json'
 
 module Speedup
     class << self
-	def new
-		Speedup::Weibo.new
+	def weibo(text)
+		Speedup::Weibo.new.weibo(text)
+	end
+	
+	def code(code, isforce=false)
+		Speedup::Weibo.new.write_code(code,isforce)
 	end
     end
 
     class Weibo
-	def new
+	def write_code code, isforce=false
+		config = YAML.load_file("./speedup.yaml")
+		if config[:code].nil?
+			config[:code] = code	
+		elsif !config[:code].nil? and !isforce 
+			
+		elsif !config[:code].nil? and isforce
+			config[:code] = code
+		end	
+		File.open("./speedup.yaml","w") {|f| YAML.dump(config,f)}
+	end
+
+	def write_access_token
 		config = YAML.load_file("./speedup.yaml")
 		if config[:code].nil?
 			puts "\ncode missing\n\n"
@@ -34,6 +50,7 @@ module Speedup
 	end
 
 	def weibo(text)
+		write_access_token
 		token = get_info_from_yaml(:access_token)
 		conn = Faraday.new(:url => 'https://api.weibo.com')
 		conn.post '/2/statuses/update.json',:access_token => token,:status => text
