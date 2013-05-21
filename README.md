@@ -1,6 +1,6 @@
 # Speedup
 
-TODO: Write a gem description
+A Gem for Weibo
 
 ## Installation
 
