@@ -16,7 +16,7 @@ module Speedup
 
     class Weibo
 	def write_code code, isforce=false
-		config = YAML.load_file("./speedup.yaml")
+		config = YAML.load_file(File.expand_path("./speedup.yaml",File.dirname(__FILE__)))
 		if config[:code].nil?
 			config[:code] = code	
 		elsif !config[:code].nil? and !isforce 
@@ -24,11 +24,11 @@ module Speedup
 		elsif !config[:code].nil? and isforce
 			config[:code] = code
 		end	
-		File.open("./speedup.yaml","w") {|f| YAML.dump(config,f)}
+		File.open(File.expand_path("./speedup.yaml",File.dirname(__FILE__)),"w") {|f| YAML.dump(config,f)}
 	end
 
 	def write_access_token
-		config = YAML.load_file("./speedup.yaml")
+		config = YAML.load_file(File.expand_path("./speedup.yaml",File.dirname(__FILE__)))
 		if config[:code].nil?
 			puts "\ncode missing\n\n"
 			exit
@@ -40,7 +40,7 @@ module Speedup
 			result = conn.post '/oauth2/access_token',:client_id => '44721943',:client_secret => '96e57fd158c96e1b4d961124dca55e56',:grant_type => 'authorization_code',:code => code,:redirect_uri => 'https://github.com/jinbin/speedup'
 
 			config[:access_token] = JSON.parse(result.env[:body])["access_token"]
-			File.open("./speedup.yaml","w") {|f| YAML.dump(config,f)}	
+			File.open(File.expand_path("./speedup.yaml",File.dirname(__FILE__)),"w") {|f| YAML.dump(config,f)}	
 		end
 	end
 	
