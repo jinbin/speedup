@@ -1,7 +1,7 @@
 require './speedup.rb'
 
-class A
-	include Speedup
-end
+require 'speedup'
 
-A.new.weibo("懒是一个很好的托辞，说得好像勤快了就真能干出什么大事儿一样。")
+Speedup.new.weibo("Hello you")
+
+#A.new.weibo("懒是一个很好的托辞，说得好像勤快了就真能干出什么大事儿一样。")

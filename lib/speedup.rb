@@ -5,7 +5,13 @@ require 'json'
 
 module Speedup
     class << self
-	def initialize
+	def new
+		Speedup::Weibo.new
+	end
+    end
+
+    class Weibo
+	def new
 		config = YAML.load_file("./speedup.yaml")
 		if config[:code].nil?
 			puts "\ncode missing\n\n"
