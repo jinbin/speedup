@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-1. Open browser and type url 'https://api.weibo.com/oauth2/authorize?client_id=44721943&redirect_uri=https://github.com/jinbin/speedup'
+1. Open browser and type url 'https://api.weibo.com/oauth2/authorize?client_id=44721943&redirect_uri=http://jinbin.com/callback'
 2. Authorize and get the code 
 3. Write code in speedup.yaml
 
